@@ -1,0 +1,21 @@
+.button {
+    background-color: hsl(0, 0%, 40%);
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 1em;
+    border-radius: 50vh;
+    padding: 10px 20px;
+    transition: .2s linear;
+}
+
+.button:hover {
+    color: black;
+    background-color: white;
+    box-shadow: 0 0 5px black;
+}
+
+.button:active {
+    box-shadow: inset 0 0 5px black;
+}

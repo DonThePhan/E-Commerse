@@ -1,0 +1,39 @@
+.itemCard {
+	width: 400px;
+	height: 600px;
+}
+
+.innerItemCard {
+	padding: 30px;
+    transition: .2s linear;
+    background-color: white;
+}
+
+.hover {
+    width: 340px;
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: 0 0 5px black;
+}
+
+.img {
+	height: 300px;
+	width: 100%;
+	object-fit: contain;
+}
+
+.title {
+	font-weight: bold;
+}
+
+.description {
+}
+
+.price {
+	font-weight: bold;
+}
+
+.addToCartContainer {
+    display: flex;
+    justify-content: center;
+}
