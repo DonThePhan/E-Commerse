@@ -1,0 +1,9 @@
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.paypal {
+    width: 500px;
+}

@@ -10,6 +10,7 @@ export default function MainNavigation() {
 					<p>The Everthing Store</p>
 				</div>
 				<div className={classes.nav}>
+					<NavLink to="/">Catalogue</NavLink>
 					<NavLink to="/login">Login</NavLink>
 					<NavLink to="/cart">Cart</NavLink>
 				</div>

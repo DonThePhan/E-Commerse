@@ -1,14 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import fakeData from './fakeData';
-import { useState, useEffect } from 'react';
 
 const DataContext = React.createContext({
 	data: [],
-	order: []
+	order: [],
+	total: 0,
+	setOrder: () => {},
+	currentItem: null,
+	setCurrentItem: () => {}
+});
+
+function retrieveStoredToken() {
+	const storedOrder = JSON.parse(localStorage.getItem('order'));
+
+	return { order: storedOrder };
+}
+
+const formatter = new Intl.NumberFormat('en-US', {
+	minimumFractionDigits: 2,
+	maximumFractionDigits: 2
 });
 
 export function DataContextProvider(props) {
-	const [ order, setOrder ] = useState({});
+	const [ currentItem, setCurrentItem ] = useState('');
+
+	let initialTokenData = retrieveStoredToken();
+	let initialOrder = {};
+	const [ total, setTotal ] = useState(500);
+	// let total = 500;
+
+	if (initialTokenData) {
+		if (initialTokenData.order) {
+			initialOrder = initialTokenData.order;
+		}
+	}
+
+	const [ order, setOrder ] = useState(initialOrder);
 
 	function addToOrder(id) {
 		let qty = 0;
@@ -24,15 +51,15 @@ export function DataContextProvider(props) {
 
 	function removeFromOrder(id) {
 		if (order && order[id]) {
-            let qty = order[id] - 1;
+			let qty = order[id] - 1;
 
 			setOrder((prevOrder) => {
 				let newOrder = {};
 
 				if (qty <= 0) {
 					newOrder = { ...prevOrder };
-                    delete newOrder[id];
-                    console.log('here')
+					delete newOrder[id];
+					console.log('here');
 				} else {
 					newOrder = { ...prevOrder, [id]: qty };
 				}
@@ -44,7 +71,20 @@ export function DataContextProvider(props) {
 
 	useEffect(
 		() => {
-			console.log(order);
+			localStorage.setItem('order', JSON.stringify(order));
+
+			let orderDetails = Object.keys(order).map((key) => {
+				return { ...fakeData.find((item) => item.id === +key), qty: order[key] };
+			});
+
+			if (orderDetails.length !== 0) {
+				let totalUnrounded = orderDetails
+					.map((orderDetail) => orderDetail.price * orderDetail.qty)
+					.reduce((a, b) => a + b);
+				setTotal(+formatter.format(totalUnrounded));
+				// total = +formatter.format(totalUnrounded);
+				// console.log(total);
+			}
 		},
 		[ order ]
 	);
@@ -52,8 +92,12 @@ export function DataContextProvider(props) {
 	const value = {
 		data: fakeData,
 		order,
-        addToOrder,
-        removeFromOrder
+		setOrder,
+		total,
+		addToOrder,
+		removeFromOrder,
+		currentItem,
+		setCurrentItem
 	};
 	return <DataContext.Provider value={value}>{props.children}</DataContext.Provider>;
 }

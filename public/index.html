@@ -10,11 +10,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
-    
+
+    <!-- Font for material UI -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <!-- Icons to support Material Design -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+
+    <!-- SDK for paypal - note variable client-id & currency (CAD for this example)-->
+    <script src="https://www.paypal.com/sdk/js?client-id=%REACT_APP_PAYPAL_CLIENT_ID%&currency=CAD"></script>
+
     <title>React App</title>
 </head>
 
 <body>
+
+    <!-- (1) React Portals -->
+    <div id='backdrop-root'></div>
+    <div id='overlay-root'></div>
+
     <div id="root"></div>
 </body>
 

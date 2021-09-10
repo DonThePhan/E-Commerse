@@ -1,4 +1,10 @@
 .mainNav {
+    top: 0;
+    z-index: 10;
+    position: fixed;
+    background: white;
+
+
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -8,7 +14,7 @@
 }
 
 .navContainer {
-    width: 70%;
+    width: 60%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

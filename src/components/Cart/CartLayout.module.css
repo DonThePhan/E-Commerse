@@ -1,0 +1,22 @@
+.noItems {
+    text-align: center;
+}
+
+.totalContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.totalText {
+    margin-right: 50px;
+}
+
+.total {
+    width: 100px;
+    font-weight: bold;
+}
+
+.cancel {
+	align-self: flex-end;
+}

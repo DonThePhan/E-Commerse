@@ -1,13 +1,14 @@
-import Reac, { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import classes from './ItemCard.module.css';
 import Button from './Button';
 import DataContext from '../../store/data-context';
 
+
 const maxDescriptionChars = 100;
 
 export default function ItemCard(props) {
-    const { id, title, price, description, category, image } = props.item;
-    const {addToOrder, removeFromOrder} = useContext(DataContext)
+	const { id, title, price, description, category, image } = props.item;
+	const { addToOrder, removeFromOrder, setCurrentItem } = useContext(DataContext);
 
 	const [ hover, setHover ] = useState(false);
 
@@ -16,15 +17,12 @@ export default function ItemCard(props) {
 	}
 	function onMouseLeaveHandler() {
 		setHover(false);
-    }
-    
-    function addToOrderHandler() {
-        addToOrder(id)
-    }
+	}
 
-    function removeFromOrderHandler() {
-        removeFromOrder(id)
-    }
+	function addToOrderHandler() {
+        addToOrder(id);
+        setCurrentItem(title)
+	}
 
 	return (
 		<div
@@ -44,11 +42,12 @@ export default function ItemCard(props) {
 						description
 					)}
 				</p>
-                <p className={classes.price}>${price}</p>
-                {hover && <div className={classes.addToCartContainer}>
-                    <Button onClick={addToOrderHandler}>Add to Cart</Button>
-                    <Button onClick={removeFromOrderHandler}>Remove</Button>
-                </div>}
+				<p className={classes.price}>${price}</p>
+				{hover && (
+					<div className={classes.addToCartContainer}>
+						<Button onClick={addToOrderHandler}>Add to Cart</Button>
+					</div>
+				)}
 			</div>
 		</div>
 	);
