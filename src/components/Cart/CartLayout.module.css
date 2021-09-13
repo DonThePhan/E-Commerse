@@ -1,5 +1,7 @@
 .noItems {
+    font-size: 1.25rem;
     text-align: center;
+    margin: 200px;
 }
 
 .totalContainer {
