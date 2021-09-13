@@ -1,9 +1,10 @@
 /**
- * Project Console:
+ **Hosting URL: 
+ * https://e-commerse-21d75.web.app
+ * 
+ **Project Console:
  * https://console.firebase.google.com/project/e-commerse-21d75/overview
  * 
- * Hosting URL: 
- * https://e-commerse-21d75.web.app
  */
 
 import './App.css';
